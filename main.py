@@ -1,22 +1,22 @@
-import cv2 as cv
-import numpy as np
-import mediapipe as mp
+import pprint
 import csv
 import copy
 import itertools
 import datetime
-import pprint
-from model import KeyPointClassifier
+import cv2 as cv
+import numpy as np
+import mediapipe as mp
 from utils import CvFpsCalc
 from utils import draw
-#from utils import hand
+from utils import judge
+from model import KeyPointClassifier
 from collections import Counter
 
 def main():
     mode = 0
     out_no = 87
     var = out_no
-    #var = hand.Variables(out_no)
+    var = judge.Variables(out_no)
 
     mp_hands = mp.solutions.hands
     hands = mp_hands.Hands(max_num_hands = 2,
@@ -42,7 +42,6 @@ def main():
 
     while True:
         fps = cvFpsCalc.get()
-
         key = cv.waitKey(0)
         if key == 27:
             break

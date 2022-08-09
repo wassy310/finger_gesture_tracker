@@ -107,8 +107,8 @@ def main():
                 var.input_letters = ""
                 var.del_lock_tm = get_tm_int()
 
-        debug_image = draw_info(debug_image, fps, mode, number)
-        debug_image = draw_info_text(debug_image, var.input_letters)
+        debug_image = draw.draw_info(debug_image, fps, mode, number)
+        #debug_image = draw.draw_info(debug_image, var.input_letters)
 
         cv.imshow("hand gesture recog", debug_image)
 

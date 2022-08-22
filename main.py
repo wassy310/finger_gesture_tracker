@@ -24,8 +24,7 @@ def main():
         min_tracking_confidence = 0.5,
     )
     keypoint_classifier = KeyPointClassifier(
-        'model/keypoint_classifier/keypoint_classifier.tflite'
-        )
+        'model/keypoint_classifier/keypoint_classifier.tflite')
 
     with open('model/keypoint_classifier/keypoint_classifier_label.csv',
               encoding = 'utf-8-sig') as f:
@@ -70,7 +69,7 @@ def main():
                 logging_csv(number, mode, pre_processed_landmark_list,
                             pre_processed_point_history_list)
 
-                if handedness.classification[0]/label[0:] == "Left":
+                if handedness.classification[0] / label[0:] == "Left":
                     left_fg = 1
                     var.hand_sign_id = out_no
                 else:
@@ -164,7 +163,7 @@ def calc_brect_center(brect):
     center_x = (brect[0] + brect[2]) / 2
     center_y = (brect[1] + brect[3]) / 2
     
-    return [center_x , center_y]
+    return [center_x, center_y]
 
 def calc_landmark_list(image, landmarks):
     image_width, image_height = image.shape[1], image.shape[0]

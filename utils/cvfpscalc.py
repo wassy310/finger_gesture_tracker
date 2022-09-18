@@ -1,5 +1,5 @@
-from collections import deque
 import cv2 as cv
+from collections import deque
 
 class CvFpsCalc(object):
     def __init__(self, buffer_len = 1):

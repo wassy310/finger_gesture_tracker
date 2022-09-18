@@ -1,5 +1,4 @@
-import cv2 as cv
-import numpy as np
+import cv2 as cv, numpy as np
 from PIL import Image, ImageDraw, ImageFont
 from math import floor
 
@@ -10,94 +9,136 @@ def get_point_x_y(landmark_point):
 
 def draw_landmarks(image, landmark_point):
     if len(landmark_point) > 0:
-        cv.line(image, get_point_x_y(landmark_point[2]), get_point_x_y(landmark_point[3]),
-                (0, 0, 0), 6)
-        cv.line(image, get_point_x_y(landmark_point[2]), get_point_x_y(landmark_point[3]),
-                (255, 255, 255), 2)
-        cv.line(image, get_point_x_y(landmark_point[3]), get_point_x_y(landmark_point[4]),
-                (0, 0, 0), 6)
-        cv.line(image, get_point_x_y(landmark_point[3]), get_point_x_y(landmark_point[4]),
-                (255, 255, 255), 2)
-        cv.line(image, get_point_x_y(landmark_point[5]), get_point_x_y(landmark_point[6]),
-                (0, 0, 0), 6)
-        cv.line(image, get_point_x_y(landmark_point[5]), get_point_x_y(landmark_point[6]),
-                (255, 255, 255), 2)
-        cv.line(image, get_point_x_y(landmark_point[6]), get_point_x_y(landmark_point[7]),
-                (0, 0, 0), 6)
-        cv.line(image, get_point_x_y(landmark_point[6]), get_point_x_y(landmark_point[7]),
-                (255, 255, 255), 2)
-        cv.line(image, get_point_x_y(landmark_point[7]), get_point_x_y(landmark_point[8]),
-                (0, 0, 0), 6)
-        cv.line(image, get_point_x_y(landmark_point[7]), get_point_x_y(landmark_point[8]),
-                (255, 255, 255), 2)
+        cv.line(image, get_point_x_y(landmark_point[2]),
+        get_point_x_y(landmark_point[3]),
+        (0, 0, 0), 6)
+        cv.line(image, get_point_x_y(landmark_point[2]),
+        get_point_x_y(landmark_point[3]),
+        (255, 255, 255), 2)
+        cv.line(image, get_point_x_y(landmark_point[3]),
+        get_point_x_y(landmark_point[4]),
+        (0, 0, 0), 6)
+        cv.line(image, get_point_x_y(landmark_point[3]),
+        get_point_x_y(landmark_point[4]),
+        (255, 255, 255), 2)
+        cv.line(image, get_point_x_y(landmark_point[5]),
+        get_point_x_y(landmark_point[6]),
+        (0, 0, 0), 6)
+        cv.line(image, get_point_x_y(landmark_point[5]),
+        get_point_x_y(landmark_point[6]),
+        (255, 255, 255), 2)
+        cv.line(image, get_point_x_y(landmark_point[6]),
+        get_point_x_y(landmark_point[7]),
+        (0, 0, 0), 6)
+        cv.line(image, get_point_x_y(landmark_point[6]),
+        get_point_x_y(landmark_point[7]),
+        (255, 255, 255), 2)
+        cv.line(image, get_point_x_y(landmark_point[7]),
+        get_point_x_y(landmark_point[8]),
+        (0, 0, 0), 6)
+        cv.line(image, get_point_x_y(landmark_point[7]),
+        get_point_x_y(landmark_point[8]),
+        (255, 255, 255), 2)
 
-        cv.line(image, get_point_x_y(landmark_point[9]), get_point_x_y(landmark_point[10]),
-                (0, 0, 0), 6)
-        cv.line(image, get_point_x_y(landmark_point[9]), get_point_x_y(landmark_point[10]),
-                (255, 255, 255), 2)
-        cv.line(image, get_point_x_y(landmark_point[10]), get_point_x_y(landmark_point[11]),
-                (0, 0, 0), 6)
-        cv.line(image, get_point_x_y(landmark_point[10]), get_point_x_y(landmark_point[11]),
-                (255, 255, 255), 2)
-        cv.line(image, get_point_x_y(landmark_point[11]), get_point_x_y(landmark_point[12]),
-                (0, 0, 0), 6)
-        cv.line(image, get_point_x_y(landmark_point[11]), get_point_x_y(landmark_point[12]),
-                (255, 255, 255), 2)
+        cv.line(image, get_point_x_y(landmark_point[9]),
+        get_point_x_y(landmark_point[10]),
+        (0, 0, 0), 6)
+        cv.line(image, get_point_x_y(landmark_point[9]),
+        get_point_x_y(landmark_point[10]),
+        (255, 255, 255), 2)
+        cv.line(image, get_point_x_y(landmark_point[10]),
+        get_point_x_y(landmark_point[11]),
+        (0, 0, 0), 6)
+        cv.line(image, get_point_x_y(landmark_point[10]),
+        get_point_x_y(landmark_point[11]),
+        (255, 255, 255), 2)
+        cv.line(image, get_point_x_y(landmark_point[11]),
+        get_point_x_y(landmark_point[12]),
+        (0, 0, 0), 6)
+        cv.line(image, get_point_x_y(landmark_point[11]),
+        get_point_x_y(landmark_point[12]),
+        (255, 255, 255), 2)
 
-        cv.line(image, get_point_x_y(landmark_point[13]), get_point_x_y(landmark_point[14]),
-                (0, 0, 0), 6)
-        cv.line(image, get_point_x_y(landmark_point[13]), get_point_x_y(landmark_point[14]),
-                (255, 255, 255), 2)
-        cv.line(image, get_point_x_y(landmark_point[14]), get_point_x_y(landmark_point[15]),
-                (0, 0, 0), 6)
-        cv.line(image, get_point_x_y(landmark_point[14]), get_point_x_y(landmark_point[15]),
-                (255, 255, 255), 2)
-        cv.line(image, get_point_x_y(landmark_point[15]), get_point_x_y(landmark_point[16]),
-                (0, 0, 0), 6)
-        cv.line(image, get_point_x_y(landmark_point[15]), get_point_x_y(landmark_point[16]),
-                (255, 255, 255), 2)
+        cv.line(image, get_point_x_y(landmark_point[13]),
+        get_point_x_y(landmark_point[14]),
+        (0, 0, 0), 6)
+        cv.line(image, get_point_x_y(landmark_point[13]),
+        get_point_x_y(landmark_point[14]),
+        (255, 255, 255), 2)
+        cv.line(image, get_point_x_y(landmark_point[14]),
+        get_point_x_y(landmark_point[15]),
+        (0, 0, 0), 6)
+        cv.line(image, get_point_x_y(landmark_point[14]),
+        get_point_x_y(landmark_point[15]),
+        (255, 255, 255), 2)
+        cv.line(image, get_point_x_y(landmark_point[15]),
+        get_point_x_y(landmark_point[16]),
+        (0, 0, 0), 6)
+        cv.line(image, get_point_x_y(landmark_point[15]),
+        get_point_x_y(landmark_point[16]),
+        (255, 255, 255), 2)
 
-        cv.line(image, get_point_x_y(landmark_point[17]), get_point_x_y(landmark_point[18]),
-                (0, 0, 0), 6)
-        cv.line(image, get_point_x_y(landmark_point[17]), get_point_x_y(landmark_point[18]),
-                (255, 255, 255), 2)
-        cv.line(image, get_point_x_y(landmark_point[18]), get_point_x_y(landmark_point[19]),
-                (0, 0, 0), 6)
-        cv.line(image, get_point_x_y(landmark_point[18]), get_point_x_y(landmark_point[19]),
-                (255, 255, 255), 2)
-        cv.line(image, get_point_x_y(landmark_point[19]), get_point_x_y(landmark_point[20]),
-                (0, 0, 0), 6)
-        cv.line(image, get_point_x_y(landmark_point[19]), get_point_x_y(landmark_point[20]),
-                (255, 255, 255), 2)
+        cv.line(image, get_point_x_y(landmark_point[17]),
+        get_point_x_y(landmark_point[18]),
+        (0, 0, 0), 6)
+        cv.line(image, get_point_x_y(landmark_point[17]),
+        get_point_x_y(landmark_point[18]),
+        (255, 255, 255), 2)
+        cv.line(image, get_point_x_y(landmark_point[18]),
+        get_point_x_y(landmark_point[19]),
+        (0, 0, 0), 6)
+        cv.line(image, get_point_x_y(landmark_point[18]),
+        get_point_x_y(landmark_point[19]),
+        (255, 255, 255), 2)
+        cv.line(image, get_point_x_y(landmark_point[19]),
+        get_point_x_y(landmark_point[20]),
+        (0, 0, 0), 6)
+        cv.line(image, get_point_x_y(landmark_point[19]),
+        get_point_x_y(landmark_point[20]),
+        (255, 255, 255), 2)
 
-        cv.line(image, get_point_x_y(landmark_point[0]), get_point_x_y(landmark_point[1]),
-                (0, 0, 0), 6)
-        cv.line(image, get_point_x_y(landmark_point[0]), get_point_x_y(landmark_point[1]),
-                (255, 255, 255), 2)
-        cv.line(image, get_point_x_y(landmark_point[1]), get_point_x_y(landmark_point[2]),
-                (0, 0, 0), 6)
-        cv.line(image, get_point_x_y(landmark_point[1]), get_point_x_y(landmark_point[2]),
-                (255, 255, 255), 2)
-        cv.line(image, get_point_x_y(landmark_point[2]), get_point_x_y(landmark_point[5]),
-                (0, 0, 0), 6)
-        cv.line(image, get_point_x_y(landmark_point[2]), get_point_x_y(landmark_point[5]),
-                (255, 255, 255), 2)
-        cv.line(image, get_point_x_y(landmark_point[5]), get_point_x_y(landmark_point[9]),
-                (0, 0, 0), 6)
-        cv.line(image, get_point_x_y(landmark_point[5]), get_point_x_y(landmark_point[9]),
-                (255, 255, 255), 2)
-        cv.line(image, get_point_x_y(landmark_point[9]), get_point_x_y(landmark_point[13]),
-                (0, 0, 0), 6)
-        cv.line(image, get_point_x_y(landmark_point[9]), get_point_x_y(landmark_point[13]),
-                (255, 255, 255), 2)
-        cv.line(image, get_point_x_y(landmark_point[13]), get_point_x_y(landmark_point[17]),
-                (0, 0, 0), 6)
-        cv.line(image, get_point_x_y(landmark_point[13]), get_point_x_y(landmark_point[17]),
-                (255, 255, 255), 2)
-        cv.line(image, get_point_x_y(landmark_point[17]), get_point_x_y(landmark_point[0]),
-                (0, 0, 0), 6)
-        cv.line(image, get_point_x_y(landmark_point[17]), get_point_x_y(landmark_point[0]),
-                (255, 255, 255), 2)
+        cv.line(image, get_point_x_y(landmark_point[0]),
+        get_point_x_y(landmark_point[1]),
+        (0, 0, 0), 6)
+        cv.line(image, get_point_x_y(landmark_point[0]),
+        get_point_x_y(landmark_point[1]),
+        (255, 255, 255), 2)
+        cv.line(image, get_point_x_y(landmark_point[1]),
+        get_point_x_y(landmark_point[2]),
+        (0, 0, 0), 6)
+        cv.line(image, get_point_x_y(landmark_point[1]),
+        get_point_x_y(landmark_point[2]),
+        (255, 255, 255), 2)
+        cv.line(image, get_point_x_y(landmark_point[2]),
+        get_point_x_y(landmark_point[5]),
+        (0, 0, 0), 6)
+        cv.line(image, get_point_x_y(landmark_point[2]),
+        get_point_x_y(landmark_point[5]),
+        (255, 255, 255), 2)
+        cv.line(image, get_point_x_y(landmark_point[5]),
+        get_point_x_y(landmark_point[9]),
+        (0, 0, 0), 6)
+        cv.line(image, get_point_x_y(landmark_point[5]),
+        get_point_x_y(landmark_point[9]),
+        (255, 255, 255), 2)
+        cv.line(image, get_point_x_y(landmark_point[9]),
+        get_point_x_y(landmark_point[13]),
+        (0, 0, 0), 6)
+        cv.line(image, get_point_x_y(landmark_point[9]),
+        get_point_x_y(landmark_point[13]),
+        (255, 255, 255), 2)
+        cv.line(image, get_point_x_y(landmark_point[13]),
+        get_point_x_y(landmark_point[17]),
+        (0, 0, 0), 6)
+        cv.line(image, get_point_x_y(landmark_point[13]),
+        get_point_x_y(landmark_point[17]),
+        (255, 255, 255), 2)
+        cv.line(image, get_point_x_y(landmark_point[17]),
+        get_point_x_y(landmark_point[0]),
+        (0, 0, 0), 6)
+        cv.line(image, get_point_x_y(landmark_point[17]),
+        get_point_x_y(landmark_point[0]),
+        (255, 255, 255), 2)
 
     for index, landmark in enumerate(landmark_point):
         if index == 0:
@@ -228,23 +269,29 @@ def draw_jp_brect(image, brect, hand_sign_text):
     return image
 
 def draw_info(image, fps, mode, number):
-    cv.putText(image, "FPS: " + str(fps), (10, 30), cv.FONT_HERSHEY_SIMPLEX,
-               1.0, (0, 0, 0), 4, cv.LINE_AA)
-    cv.putText(image, "FPS: " + str(fps), (10, 30), cv.FONT_HERSHEY_SIMPLEX,
-               1.0, (255, 255, 255), 2, cv.LINE_AA)
+    cv.putText(image, "FPS: " + str(fps), (10, 30),
+        cv.FONT_HERSHEY_SIMPLEX, 1.0,
+        (0, 0, 0), 4, cv.LINE_AA)
+    cv.putText(image, "FPS: " + str(fps), (10, 30),
+        cv.FONT_HERSHEY_SIMPLEX, 1.0,
+        (255, 255, 255), 2, cv.LINE_AA)
 
     if 0 <= mode <= 9:
         cv.putText(image, "MODE: " + str(mode), (10, 90),
-                cv.FONT_HERSHEY_SIMPLEX, 0.6, (255, 255, 255), 1, cv.LINE_AA)
+                cv.FONT_HERSHEY_SIMPLEX, 0.6,
+                (255, 255, 255), 1, cv.LINE_AA)
         if 0 <= number <= 9:
                 cv.putText(image, "NUM: " + str(number), (10, 110),
-                        cv.FONT_HERSHEY_SIMPLEX, 0.6, (255, 255, 255), 1, cv.LINE_AA)
+                        cv.FONT_HERSHEY_SIMPLEX, 0.6,
+                        (255, 255, 255), 1, cv.LINE_AA)
 
     return image
 
 def overlay_Image(image, overlay, brect):
     bw = 10
-    overlay = cv.resize(overlay, (brect[2] - brect[0] - bw * 2, brect[3] - brect[1] - bw))
+    overlay = cv.resize(overlay,
+        (brect[2] - brect[0] - bw * 2, brect[3] - brect[1] - bw)
+        )
 
     pil_src = Image.fromarray(image)
     pil_src = pil_src.convert('RGBA')

@@ -1,7 +1,6 @@
 # In[1]:
 import csv
-import numpy as np
-import tensorflow as tf
+import numpy as np, tensorflow as tf
 from sklearn.model_selection import train_test_split
 
 RANDOM_SEED = 42
@@ -17,13 +16,19 @@ NUM_CLASSES = 60
 
 # # 学習データ読み込み
 # In[4]:
-X_dataset = np.loadtxt(dataset, delimiter = ',', dtype = 'float32', usecols = list(range(1, (21 * 3) + 1)))
+X_dataset = np.loadtxt(
+    dataset, delimiter = ',', dtype = 'float32',
+    usecols = list(range(1, (21 * 3) + 1)))
 
 # In[5]:
-y_dataset = np.loadtxt(dataset, delimiter = ',', dtype = 'int32', usecols = (0))
+y_dataset = np.loadtxt(
+    dataset, delimiter = ',',
+    dtype = 'int32', usecols = (0))
 
 # In[6]:
-X_train, X_test, y_train, y_test = train_test_split(X_dataset, y_dataset, train_size = 0.75, random_state = RANDOM_SEED)
+X_train, X_test, y_train, y_test = train_test_split(
+    X_dataset, y_dataset, train_size = 0.75, random_state = RANDOM_SEED
+    )
 
 # # モデル構築
 # In[7]:
@@ -75,9 +80,7 @@ print(np.argmax(np.squeeze(predict_result)))
 
 # # 混同行列
 # In[15]:
-import pandas as pd
-import seaborn as sns
-import matplotlib.pyplot as plt
+import pandas as pd, seaborn as sns, matplotlib.pyplot as plt
 from sklearn.metrics import confusion_matrix, classification_report
 
 def print_confusion_matrix(y_true, y_pred, report = True):
@@ -130,7 +133,10 @@ interpreter.set_tensor(input_details[0]['index'], np.array([X_test[0]]))
 
 
 # In[21]:
-get_ipython().run_cell_magic('time', '', "interpreter.invoke()\ntflite_results = interpreter.get_tensor(output_details[0]['index'])")
+get_ipython().run_cell_magic(
+    'time', '',
+    "interpreter.invoke()\ntflite_results = interpreter.get_tensor(output_details[0]['index'])"
+    )
 
 
 # In[22]:

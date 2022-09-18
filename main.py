@@ -1,14 +1,6 @@
-import pprint
-import csv
-import copy
-import itertools
-import datetime
-import cv2 as cv
-import numpy as np
-import mediapipe as mp
-from utils import CvFpsCalc
-from utils import draw
-from utils import judge
+import pprint, csv, copy, itertools, datetime
+import cv2 as cv, numpy as np, mediapipe as mp
+from utils import CvFpsCalc, draw, judge
 from model import KeyPointClassifier
 from collections import Counter
 
@@ -19,12 +11,14 @@ def main():
     var = judge.Variables(out_no)
 
     mp_hands = mp.solutions.hands
-    hands = mp_hands.Hands(max_num_hands = 2,
+    hands = mp_hands.Hands(
+        max_num_hands = 2,
         min_detection_confidence = 0.7,
         min_tracking_confidence = 0.5,
     )
     keypoint_classifier = KeyPointClassifier(
-        'model/keypoint_classifier/keypoint_classifier.tflite')
+        'model/keypoint_classifier/keypoint_classifier.tflite'
+        )
 
     with open('model/keypoint_classifier/keypoint_classifier_label.csv',
               encoding = 'utf-8-sig') as f:
@@ -61,20 +55,25 @@ def main():
 
         if results.multi_hand_landmarks is not None and mode != 9:
             left_fg, right_fg = 0, 0
-            for hand_landmarks, handedness in zip(results.multi_hand_landmarks,
-                                                  results.multi_handedness):
+            for hand_landmarks, handedness in zip(
+                results.multi_hand_landmarks,
+                results.multi_handedness):
                 brect = calc_bounding_rect(debug_image, hand_landmarks)
                 landmark_list = calc_landmark_list(debug_image, hand_landmarks)
                 pre_processed_landmark_list = pre_process_landmark(landmark_list)
-                logging_csv(number, mode, pre_processed_landmark_list,
-                            pre_processed_point_history_list)
+                logging_csv(
+                    number, mode, pre_processed_landmark_list,
+                    pre_processed_point_history_list
+                    )
 
                 if handedness.classification[0] / label[0:] == "Left":
                     left_fg = 1
                     var.hand_sign_id = out_no
                 else:
                     right_fg = 1
-                    var.hand_sign_id = keypoint_classifier(pre_processed_landmark_list)
+                    var.hand_sign_id = keypoint_classifier(
+                        pre_processed_landmark_list
+                        )
                     landmark_tips = get_landmark_tips(image, hand_landmarks)
 
                     var.get_hand_sign_id(landmark_tips, hand_landmarks)
@@ -98,7 +97,8 @@ def main():
 
             if left_fg == 1 and right_fg == 1:
                 var.hand_sign_id = out_no - 1
-                if get_tm_int() - var.del_lock_tm > 100 and 2 <= len(var.input_letters):
+                if get_tm_int() - var.del_lock_tm > 100 and 2 <= len(
+                    var.input_letters):
                     var.input_letters = var.input_letters[:-2] + var.input_letters[-1]
                     var.del_lock_tm = get_tm_int()
         else:
@@ -194,7 +194,9 @@ def pre_process_landmark(landmark_list):
 
     for index, landmark_point in enumerate(temp_landmark_list):
         if index == 0:
-            base_x, base_y, base_z = landmark_point[0], landmark_point[1], landmark_point[2]
+            base_x, base_y, base_z = landmark_point[0],
+            landmark_point[1],
+            landmark_point[2]
         temp_landmark_list[index][0] = temp_landmark_list[index][0] - base_x
         temp_landmark_list[index][1] = temp_landmark_list[index][1] - base_y
         temp_landmark_list[index][2] = (temp_landmark_list[index][2] - base_z) * 200
@@ -202,14 +204,15 @@ def pre_process_landmark(landmark_list):
         itertools.chain.from_iterable(temp_landmark_list))
 
     max_value = max(list(map(abs, temp_landmark_list)))
-    def normalize_(n): return n / max_value
+    def normalize_(n):
+        return n / max_value
     temp_landmark_list = list(map(normalize_, temp_landmark_list))
 
     return temp_landmark_list
 
 def logging_csv(number, mode, landmark_list):
-
-    if mode == 0: pass
+    if mode == 0:
+        pass
     if mode == 1 and (0 <= number <= 9):
         csv_path = 'model/keypoint_classifier/keypoint.csv'
         with open(csv_path, 'a', newline = "") as f:

@@ -1,3 +1,5 @@
+English: [README.md](/README.md)
+
 # Finger Gesture Tracker
 移行元プロジェクト: https://github.com/wassy310/handgesture_test
 

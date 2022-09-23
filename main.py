@@ -14,7 +14,7 @@ def main():
     hands = mp_hands.Hands(
         max_num_hands = 2,
         min_detection_confidence = 0.7,
-        min_tracking_confidence = 0.5,
+        min_tracking_confidence = 0.5
     )
     keypoint_classifier = KeyPointClassifier(
         'model/keypoint_classifier/keypoint_classifier.tflite'
@@ -92,7 +92,7 @@ def main():
                 debug_image = draw_info_text(
                     debug_image,
                     brect,
-                    point_history_classifier_labels[most_common_fg_id[0][0]],
+                    point_history_classifier_labels[most_common_fg_id[0][0]]
                 )
 
             if left_fg == 1 and right_fg == 1:

@@ -32,8 +32,6 @@ def main():
     cap.set(cv.CAP_PROP_FRAME_HEIGHT, 720)
     cap.set(cv.CAP_PROP_FPS, 60)
 
-    print(cap.get(cv.CAP_PROP_FPS))
-
     while True:
         fps = cap.get(cv.CAP_PROP_FPS)
         key = cv.waitKey(0)

@@ -29,12 +29,13 @@ def main():
 
     cap = cv.VideoCapture(0)
     cap.set(cv.CAP_PROP_FRAME_WIDTH, 960)
-    cap.set(cv.CAP_PROP_FRAME_HEIGHT, 540)
+    cap.set(cv.CAP_PROP_FRAME_HEIGHT, 720)
+    cap.set(cv.CAP_PROP_FPS, 60)
 
-    cvFpsCalc = CvFpsCalc(buffer_len = 10)
+    print(cap.get(cv.CAP_PROP_FPS))
 
     while True:
-        fps = cvFpsCalc.get()
+        fps = cap.get(cv.CAP_PROP_FPS)
         key = cv.waitKey(0)
         if key == 27:
             break
@@ -62,7 +63,9 @@ def main():
                 landmark_list = calc_landmark_list(debug_image, hand_landmarks)
                 pre_processed_landmark_list = pre_process_landmark(landmark_list)
                 logging_csv(
-                    number, mode, pre_processed_landmark_list,
+                    number,
+                    mode,
+                    pre_processed_landmark_list,
                     pre_processed_point_history_list
                     )
 
@@ -71,9 +74,7 @@ def main():
                     var.hand_sign_id = out_no
                 else:
                     right_fg = 1
-                    var.hand_sign_id = keypoint_classifier(
-                        pre_processed_landmark_list
-                        )
+                    var.hand_sign_id = keypoint_classifier(pre_processed_landmark_list)
                     landmark_tips = get_landmark_tips(image, hand_landmarks)
 
                     var.get_hand_sign_id(landmark_tips, hand_landmarks)
@@ -109,7 +110,7 @@ def main():
         debug_image = draw.draw_info(debug_image, fps, mode, number)
         #debug_image = draw.draw_info(debug_image, var.input_letters)
 
-        cv.imshow("hand gesture recog", debug_image)
+        cv.imshow("hand gesture", debug_image)
 
     cap.release()
     hands.close()
@@ -194,14 +195,15 @@ def pre_process_landmark(landmark_list):
 
     for index, landmark_point in enumerate(temp_landmark_list):
         if index == 0:
-            base_x, base_y, base_z = landmark_point[0],
+            base_x,
+            base_y,
+            base_z = landmark_point[0],
             landmark_point[1],
             landmark_point[2]
         temp_landmark_list[index][0] = temp_landmark_list[index][0] - base_x
         temp_landmark_list[index][1] = temp_landmark_list[index][1] - base_y
         temp_landmark_list[index][2] = (temp_landmark_list[index][2] - base_z) * 200
-    temp_landmark_list = list(
-        itertools.chain.from_iterable(temp_landmark_list))
+    temp_landmark_list = list(itertools.chain.from_iterable(temp_landmark_list))
 
     max_value = max(list(map(abs, temp_landmark_list)))
     def normalize_(n):
